@@ -1,56 +1,86 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>자기소개서</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                text-align: left;
-                margin: 40px;
-                background-color: #f0f0f0;
-                transition: background-color 0.3s ease;
-            }
+<head>
+    <meta charset="UTF-8">
+    <title>자기소개서</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: left;
+            margin: 40px;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
 
-            h1 {
-                color: #48c181;
-            }
+        h1 {
+            color: #48c181;
+        }
 
-            button {
-                background-color: rgb(164, 30, 144);
-                color: rgb(11, 10, 10);
-                padding: 30px 50px;
-                border: none;
-                border-radius: 50px;
-                cursor: pointer;
-                font-size: 20px;
-            }
+        button {
+            background-color: rgb(164, 30, 144);
+            color: rgb(11, 10, 10);
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px;
+        }
 
-            button:hover {
-                background-color: darkcyan;
-                font-size: 10px;
-            }
-        </style>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const colors = ["#f0f0f0", "#ff9999", "#99ccff", "#c5e1a5", "#ffcc80"];
-                let currentIndex =0;
+        button:hover {
+            background-color: darkcyan;
+            font-size: 16px;
+        }
 
-                document.getElementById("colorButton").addEventListener("click", function () {
-                    currentIndex = (currentIndex + 1) % colors.length;
-                    document.body.style.backgroundColor = colors[currentIndex];
+        .content {
+            transition: font-size 0.3s, color 0.3s;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const colors = ["#f0f0f0", "#ff9999", "#99ccff", "#c5e1a5", "#ffcc80"];
+            const textColors = ["#000000", "#ff0000", "#0000ff", "#008000", "#800080"];
+            let currentBgIndex = 0;
+
+            const contentParagraphs = document.querySelectorAll(".content");
+
+            document.getElementById("colorButton1").addEventListener("click", function () {
+                currentBgIndex = (currentBgIndex + 1) % colors.length;
+                document.body.style.backgroundColor = colors[currentBgIndex];
+            });
+
+            document.getElementById("colorButton2").addEventListener("click", function () {
+                const randomFontSize = Math.floor(Math.random() * 10 + 16); // 16~25px
+                contentParagraphs.forEach(p => {
+                    p.style.fontSize = randomFontSize + "px";
                 });
             });
-        </script>
-    </head>
-    <body>
-        <h1>1.블록체인 개발자를 선택한 이유</h1>
-        <p>비트코인에 관심을 가지게 되면서 관련 서적을 읽게 되었고, 그 과정에서 블록체인이라는 개념을 처음 접하게 되었습니다. <br>
-            이후 블록체인에 대한 호기심이 생기면서, 더 깊이 배우고 싶다는 열망이 생겨 자연스럽게 이 분야를 선택하게 되었습니다.</p>
 
-        <h1>2.어떤 개발자가 되고 싶은지</h1>
-        <p>저는 단순히 기능을 구현하는 데 그치지 않고,</p>
-        <p>끊임없이 배우고 성장하며, 협업을 통해 더 나은 결과를 만들어내는 개발자가 되고자 합니다.</p>
-        <button id="colorButton">change Background Color</button>
-    </body>
+            document.getElementById("colorButton3").addEventListener("click", function () {
+                const randomColor = textColors[Math.floor(Math.random() * textColors.length)];
+                contentParagraphs.forEach(p => {
+                    p.style.color = randomColor;
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>1. 블록체인 개발자를 선택한 이유</h1>
+    <p class="content">
+        비트코인에 관심을 가지게 되면서 관련 서적을 읽게 되었고, 그 과정에서 블록체인이라는 개념을 처음 접하게 되었습니다.<br>
+        이후 블록체인에 대한 호기심이 생기면서, 더 깊이 배우고 싶다는 열망이 생겨 자연스럽게 이 분야를 선택하게 되었습니다.
+    </p>
+
+    <h1>2. 어떤 개발자가 되고 싶은지</h1>
+    <p class="content">
+        저는 단순히 기능을 구현하는 데 그치지 않고,<br>
+        끊임없이 배우고 성장하며, 협업을 통해 더 나은 결과를 만들어내는 개발자가 되고자 합니다.
+    </p>
+
+    <!-- 기능별 버튼 -->
+    <button id="colorButton1">배경색 바꾸기</button>
+    <button id="colorButton2">글자 크기 랜덤 변경</button>
+    <button id="colorButton3">글자 색 랜덤 변경</button>
+</body>
 </html>
